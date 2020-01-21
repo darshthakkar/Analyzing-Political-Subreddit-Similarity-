@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reddit on Politics Viz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans" />
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body style="font-family: 'Josefin Sans', sans-serif; background-color: #FEFBF4;">
+    <div id="main">
+
+     <div id="title" style="style="fill:black;background-color: black;color: white;width: 100%;height: 65px;top: 0%;font-size: 40px;font-weight: bold;">
+     <center>
+     		<p>Exploration of Reddit Environment in relation to the Political Landscape</p>
+     </center> 
+     </div>		
+     <br>
+     <svg id ="mouseHint" style="position:absolute; width: 350px; height:60px;">
+     	<text id="hintText"></text>
+     </svg>
+      <center>
+        <div style="position: relative; bottom:20px; top:5px;" id="top" >
+            <font style="font-size:20px;"> Select a Political Topic: </font>
+            <select class="custom-select small" id="TopicSelected" onchange="onTopicChange()">
+               <option selected value="Florence">Hurricane Florence</option>
+               <option value="NorthKorea">North Korea Meeting</option>
+               <option value="Shutdown">Government Shutdown</option>
+               <option value="Kavanaugh">Kavanaugh Hearing</option>
+            </select>
+        </div>
+        <div id="toolbar">
+        	
+        </div>
+      </center>
+      <hr color ="blue" size="30 !important">
+      	<center>
+     	<div id="ZeroRow">
+			<div id="toolbar">
+			      <button id="all" class="button active">All</button>
+			      <button id="cluster" class="button">By Cluster</button>
+			      <button id="cluster_family" class="button">By Cluster Family</button>
+			      <!--<button id="customers" class="button">By Customers</button>
+			      <button id="subreddit_id" class="button">By Subreddit ID</button>-->
+			  </div>
+     	</div>
+     	</center>
+
+        <div style="position: absolute; top: 700px;">
+            <div>
+                <label for="categorySelect">Y Scale:</label>
+            </div>
+            <select class="custom-select small" id="yScaleSelect" onchange="onYScaleChanged()">
+              <option selected value="avg_pos">Positive Sentiment</option>
+              <option value="avg_neg">Negative Sentiment</option>
+              <option value="avg_neu">Neutral Sentiment</option>
+              <option value="avg_compound">Compound</option>
+              <option value="subjectivity">Subjectivity</option>
+              <option value="subscribers_count">Number of Subscribers</option>
+              <option value="comments_count">Number of Comments</option>
+              <option value="submissions_count">Number of Submissions</option>
+            </select>
+        </div>
+        <div style="margin-left: 180px;" id="FirstRow">
+            <svg width="600" height="500" style="border: 1px solid #777;" id="scatterplot">
+            </svg>
+            <svg id="metainfo" width="400" height="500">
+            </svg>
+            
+	        <img src="" width="560" height="450" id= "wordcloud" style="opacity: 0;"> 
+	        
+        </div>
+        
+        <div style="margin-left: 380px;">
+            <label for="categorySelect">X Scale:</label>
+            <select class="custom-select small" id="xScaleSelect" onchange="onXScaleChanged()">
+              <option value="avg_pos">Positive Sentiment</option>
+              <option value="avg_neg">Negative Sentiment</option>
+              <option value="avg_neu">Neutral Sentiment</option>
+              <option selected value="avg_compound">Compound</option>
+              <option value="subjectivity">Subjectivity</option>
+              <option value="subscribers_count">Number of Subscribers</option>
+              <option value="comments_count">Number of Comments</option>
+              <option value="submissions_count">Number of Submissions</option>
+            </select>
+        </div>
+        <br>
+        <center>
+	        <div id = "sententree" width="600">
+
+	        </div>
+        </center>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
+<script src="./main.js"></script>
+
+</html>
