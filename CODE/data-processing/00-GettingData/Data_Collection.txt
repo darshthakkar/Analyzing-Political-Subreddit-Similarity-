@@ -1,0 +1,129 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue233;\red0\green0\blue0;\red16\green60\blue192;
+\red251\green251\blue251;\red25\green25\blue25;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c93333;\cssrgb\c0\c0\c0;\cssrgb\c6667\c33333\c80000;
+\cssrgb\c98824\c98824\c98824;\cssrgb\c12941\c12941\c12941;\cssrgb\c100000\c100000\c100000\c95294;}
+\margl1440\margr1440\vieww12400\viewh13220\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 The full dataset can be accessed at {\field{\*\fldinst{HYPERLINK "https://bigquery.cloud.google.com/dataset/fh-bigquery:reddit_comments"}}{\fldrslt \cf2 \expnd0\expndtw0\kerning0
+\ul \ulc2 \outl0\strokewidth0 \strokec2 https://bigquery.cloud.google.com/dataset/fh-bigquery:reddit_comments}}\cf2 \expnd0\expndtw0\kerning0
+\ul \ulc2 \outl0\strokewidth0 \strokec2 . \
+\
+\cf3 \ulnone There are a few steps necessary to obtain the full dataset we used. \
+\
+1. If you do not already have a gmail account, you will need to set up a google account to query data from Google BigQuery. Login. \
+\
+2. You will need to add a credit card, but you won\'92t be charged for the free tier and you can access 12 months or $300 free. {\field{\*\fldinst{HYPERLINK "https://cloud.google.com/free/docs/gcp-free-tier"}}{\fldrslt \cf4 \ul \ulc4 \strokec4 https://cloud.google.com/free/docs/gcp-free-tier}}\cf3 \strokec3  \
+\
+3. Avoid getting charged after the free trial: see this best practices document:{\field{\*\fldinst{HYPERLINK "https://cloud.google.com/bigquery/docs/best-practices-costs"}}{\fldrslt \cf4 \ul \ulc4 \strokec4 https://cloud.google.com/bigquery/docs/best-practices-costs}} . You can also avoid charges by by limiting the number of bytes billed for a query using the maximum bytes billed setting. When you set maximum bytes billed, if the query will read bytes beyond the limit, the query fails without incurring a charge.\
+\
+4. Create a project.\
+\
+5. Begin querying.We queried comments tables 2018_01, 2018_02, 2018_03, 2018_04, 2018_05, 2018_06, 2018_07, 2018_08, 2018_09, 2018_10, 2018_11, and 2018_12 from fh-bigquery:reddit_comments. When you click the appropriate table, click Query Table. Enter your query in Standard SQL. Click Show Options. Uncheck \'93use Legacy SQL\'94. Because the data is so large, you must create a Destination Table for the queries. You can create a table by clicking \'93Select Table\'94. Also check the box to \'93Allow Large Results\'94. You can then run the query. We used the following query(changing the FROM table for each month) using standard SQL:\
+\
+SELECT\
+  body,\
+  subreddit,\
+  created_utc,\
+  link_id,\
+  parent_id,\
+  score,\
+  id\
+FROM\
+  `fh-bigquery.reddit_comments.2018_01`\
+WHERE\
+  subreddit IN ("politics",\
+    "worldnews",\
+    "news",\
+    "TrueReddit",\
+    "PoliticalDiscussion",\
+    "socialism",\
+    "Republican",\
+    "environment",\
+    "college",\
+    "canada",\
+    "unitedkingdom",\
+    "qualitynews",\
+    "neutralnews",\
+    "worldevents",\
+    "worldpolitics",\
+    "progressive",\
+    "internationalpolitics",\
+    "geopolitics",\
+    "Catholicism",\
+    "NeutralPolitics",\
+    "moderatepolitics",\
+    "communism",\
+    "The_Donald",\
+    "Conservative",\
+    "Libertarian",\
+    "democrats",\
+    "technology",\
+    "Full_news",\
+    "Liberal",\
+    "TheNewRight",\
+    "Anarchism")\
+\
+We also queried the reddit posts dataset from {\field{\*\fldinst{HYPERLINK "https://bigquery.cloud.google.com/dataset/fh-bigquery:reddit_posts"}}{\fldrslt \cf2 \ul \ulc2 \strokec2 https://bigquery.cloud.google.com/dataset/fh-bigquery:reddit_posts}}\cf2 \ul \ulc2 \strokec2 . \cf3 \ulnone We queried \cf3 \outl0\strokewidth0 tables 2018_01, 2018_02, 2018_03, 2018_04, 2018_05, 2018_06, 2018_07, 2018_08, 2018_09, 2018_10, 2018_11, and 2018_12 from fh-bigquery:reddit_posts using the following query(changing the FROM table for each month):\
+\
+SELECT\
+  title,\
+  subreddit,\
+  created_utc,\
+  num_comments,\
+  score,\
+  selftext,\
+  id,\
+  domain,\
+  url,\
+  is_self,\
+  permalink\
+FROM\
+  `fh-bigquery.reddit_posts.2018_12`\
+WHERE\
+  subreddit IN ("politics",\
+    "worldnews",\
+    "news",\
+    "TrueReddit",\
+    "PoliticalDiscussion",\
+    "socialism",\
+    "Republican",\
+    "environment",\
+    "college",\
+    "canada",\
+    "unitedkingdom",\
+    "qualitynews",\
+    "neutralnews",\
+    "worldevents",\
+    "worldpolitics",\
+    "progressive",\
+    "internationalpolitics",\
+    "geopolitics",\
+    "Catholicism",\
+    "NeutralPolitics",\
+    "moderatepolitics",\
+    "communism",\
+    "The_Donald",\
+    "Conservative",\
+    "Libertarian",\
+    "democrats",\
+    "technology",\
+    "Full_news",\
+    "Liberal",\
+    "TheNewRight",\
+    "Anarchism")\
+\
+6. Once you have finished your queries, you will need to access the files. You must set-up a google storage bucket. Follow the instructions here: {\field{\*\fldinst{HYPERLINK "https://cloud.google.com/storage/docs/creating-buckets"}}{\fldrslt \cf2 \ul \ulc2 \outl0\strokewidth0 \strokec2 https://cloud.google.com/storage/docs/creating-buckets}}\cf2 \ul \ulc2 \outl0\strokewidth0 \strokec2 \
+\cf3 \ulnone \
+7. Go to the destination table that is holding your queried datasets, click the blue arrow that appears to the right of the table name when you hover and select \'93export table\'94. Export as a CSV with GZIP compression. Enter the location of your Google Cloud Storage URI. Because the files are too large to be exported as one, BigQuery supports the wildcard feature which allows Google to shard the file. Please see the example below:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf3 \cb5 \strokec3 Destination URI: gs://reddit_tables_6242/posts_2018_12*.gz\
+\
+Which consists of : \cf6 \cb7 \strokec6 ['gs://[YOUR_BUCKET]/file-name-*.format\'92]\cf3 \cb5 \strokec3 \
+\
+The wildcard operator after 12 ensures that all the data from posts_2018_12 will be exported to the google store bucket. See this link for more info on wildcards: {\field{\*\fldinst{HYPERLINK "https://cloud.google.com/bigquery/docs/exporting-data#exporting_data_into_one_or_more_files"}}{\fldrslt \cf2 \cb1 \ul \ulc2 \strokec2 https://cloud.google.com/bigquery/docs/exporting-data#exporting_data_into_one_or_more_files}}\cf2 \cb1 \ul \ulc2 \strokec2 \
+\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf3 \ulnone 8. Go to your storage bucket and download your data files. Do not unzip the gzip files. }
